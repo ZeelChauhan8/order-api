@@ -1,11 +1,10 @@
 from django.db import models
-from viewflow.fields import CompositeKey
 
 # Create your models here.
 
 # Customer model 
 class customers(models.Model):
-    c_id=models.IntegerField(primary_key=True)
+    # id=models.IntegerField(primary_key=True)
     c_name=models.CharField(max_length=50)
 
     def __str__(self):
@@ -13,7 +12,7 @@ class customers(models.Model):
 
 # Item (Product) model 
 class Items(models.Model):
-    i_id=models.IntegerField(primary_key=True)
+    # id=models.IntegerField(primary_key=True)
     i_name=models.CharField(max_length=50)
 
     def __str__(self):
@@ -21,26 +20,31 @@ class Items(models.Model):
 
 # Orders model :
 class Orders(models.Model):
-    o_id=models.IntegerField(primary_key=True)
+    # id=models.IntegerField(primary_key=True)
     etd=models.TimeField()
     d_address=models.TextField()
     b_address=models.TextField()
-    c_id=models.ForeignKey(customers,related_name='cust_fk',on_delete=models.CASCADE)
+    customer_id=models.ForeignKey(customers,related_name='cust_fk',on_delete=models.CASCADE)
 
     def __int__(self):
-        return self.o_id
+        return self.id
 
 #Order Details model : 
 class Order_details(models.Model):
-    
-    o_id=models.ForeignKey(Orders,primary_key=True,related_name='order_fk',on_delete=models.DO_NOTHING)
-    i_id=models.ForeignKey(Items,related_name='item_fk',on_delete=models.DO_NOTHING)
+    # id=models.IntegerField(primary_key=True)
+    order_id=models.ForeignKey(Orders,related_name='order_fk',on_delete=models.DO_NOTHING)
+    item_id=models.ForeignKey(Items,related_name='item_fk',on_delete=models.DO_NOTHING)
     quantity=models.IntegerField()
     
     def __int__(self):
-        return self.quantity
+        return self.id
 
-# # Delayed order model :
-# class Delayed_order(models.Model):
-#     o_id=models.ForeignKey(Orders,related_name='order_fk',on_delete=models.DO_NOTHING)
-#     c_time
+# Delayed order model :
+class Delayed_orders(models.Model):
+    # id=models.IntegerField(primary_key=True)
+    order_id=models.ForeignKey(Orders,related_name='orders_fk',on_delete=models.DO_NOTHING)
+    customer_time=models.TimeField()
+    etd=models.TimeField()
+    
+    def __int__(self):
+        return self.id
