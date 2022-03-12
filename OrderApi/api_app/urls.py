@@ -6,9 +6,8 @@ from . import views
 
 router = DefaultRouter()
 router.register('', OrderViewset, basename='order-api')
-router.register('delayed', DelayedOrderViewset, basename='delayed-order')
 
-
+router.register('delayed/get',DelayedOrderViewset, basename='delayed-order')
 
 urlpatterns = router.urls
  

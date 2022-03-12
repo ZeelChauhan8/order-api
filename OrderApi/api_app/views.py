@@ -16,8 +16,8 @@ class DelayedOrderViewset(viewsets.ModelViewSet):
     serializer_class = Delayed_order_Serializer
 
 
-# @api_view(['GET'])     # get all records 
-# def DelayOrderList(request):
-#     delayorder=Delayed_orders.objects.all()
-#     serializer=Delayed_order_Serializer(delayorder,many=True) 
-#     return Response(serializer.data)
+@api_view(['GET'])     # get all records 
+def DelayOrderList(request):
+    delayorder=Delayed_orders.objects.all()
+    serializer=Delayed_order_Serializer(delayorder,many=True) 
+    return Response(serializer.data)
