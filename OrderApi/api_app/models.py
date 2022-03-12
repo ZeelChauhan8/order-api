@@ -43,7 +43,7 @@ class Order_details(models.Model):
 class Delayed_orders(models.Model):
     # id=models.IntegerField(primary_key=True)
     order_id=models.ForeignKey(Orders,related_name='orders_fk',on_delete=models.DO_NOTHING)
-    customer_time=models.TimeField()
+    current_time=models.TimeField()
     etd=models.TimeField()
     
     def __int__(self):
