@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path,include
 
 
+
 # router=routers.DefaultRouter()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('orders/v1/', include('api_app.urls')),
+    
     
 ]
